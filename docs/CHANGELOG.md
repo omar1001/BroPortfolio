@@ -54,7 +54,9 @@
   status bar cropped) — the link never went live (PC "connected but no audio", phone "waiting for the PC"), so the
   standby screens are used. Video Downloader skipped at Omar's request.
 
-**Published (Omar's go-ahead, 2026-10-08):** public repo `omar1001/BroPortfolio`; site on Cloudflare Pages project
-`omar-abossrie` (`siteUrl` set to https://omar-abossrie.pages.dev).
+**Published (Omar's go-ahead, 2026-10-08):** public repo `omar1001/BroPortfolio` (history squashed to one clean
+commit before the first push, so no earlier Report Cards entry or Windows user name is in it). Website: Cloudflare
+Pages project `omar-abossrie`, `siteUrl` = https://omar-abossrie.pages.dev — NOT deployed yet: the saved wrangler
+login had expired and the OAuth login timed out (nobody clicked Allow). Omar runs `npx wrangler login`, then Publish.bat.
 
 **Open:** investment-share demo fund; Iskandarani admin screens; Bro Mic live re-shoot; `profile.platforms` URLs.

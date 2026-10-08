@@ -42,6 +42,7 @@ Console page). MGO live link hidden on platforms (WhatsApp funnel). Hosting: Clo
 `node tools/probe.mjs <url> '[steps]' out.png [--preset mobile] [--until load]` · `Publish.bat` / `node tools/deploy.mjs [cloudflare|firebase]` · `Add Project.bat`
 
 ## Open items
+- **First Cloudflare deploy pending:** Omar runs `npx wrangler login` (click Allow), then `Publish.bat`.
 - investment-share (VOX Motors) needs a demo fund Omar creates (throwaway Firebase project or demo account) — hidden.
 - iskandarani: admin/POS screens need the Cafe Nour demo seeded + Omar signing in.
 - Bro Mic did not link during capture (PC "connected but no audio", phone "waiting for the PC") — standby shots used; re-shoot live later.
@@ -58,4 +59,4 @@ Console page). MGO live link hidden on platforms (WhatsApp funnel). Hosting: Clo
 ## Change log (index — full entries in docs/CHANGELOG.md)
 | Date | Headline | Read before touching |
 |---|---|---|
-| 2026-10-08 | v1: engine, 19 projects, kit, privacy rules; Report Cards excluded; published | everything (first entry) |
+| 2026-10-08 | v1: engine, 19 projects, kit, privacy rules; Report Cards excluded; GitHub published, Cloudflare pending login | everything (first entry) |
