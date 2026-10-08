@@ -29,7 +29,9 @@ if (target === 'cloudflare') {
   run('npx', [...wrangler, 'pages', 'project', 'create', name, '--production-branch', 'main'], { stdio: 'ignore' });
   const r = run('npx', [...wrangler, 'pages', 'deploy', 'dist', '--project-name', name, '--branch', 'main', '--commit-dirty=true']);
   if (r.status !== 0) { console.error('\nPublishing failed. If it says you are not logged in, run:  npx wrangler login'); process.exit(1); }
-  console.log(`\nPublished. Your site: https://${name}.pages.dev  (put this in content/profile.js -> siteUrl if it is not there yet)`);
+  console.log(`\nPublished. Your site should be: https://${name}.pages.dev`);
+  console.log('If Cloudflare printed a different address above (the name was taken), put that address in');
+  console.log('content/profile.js -> siteUrl and publish again, so the upload-kit links point to the right place.');
 } else if (target === 'firebase') {
   if (!cfg.firebaseProject) { console.error('Set "firebaseProject" in bro.config.json first.'); process.exit(1); }
   fs.writeFileSync(P('firebase.json'), JSON.stringify({
