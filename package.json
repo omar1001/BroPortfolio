@@ -1,0 +1,23 @@
+{
+  "name": "broportfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A bilingual (Arabic/English) portfolio site + freelance-platform upload kit, built from one data file. Add a project, capture screenshots automatically, publish free.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Omar Abossrie (https://github.com/omar1001)",
+  "scripts": {
+    "shoot": "node tools/shoot.mjs",
+    "build": "node tools/build.mjs",
+    "new": "node tools/new-project.mjs",
+    "preview": "node tools/build.mjs && node tools/serve.mjs --open",
+    "deploy": "node tools/deploy.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.64.0",
+    "sharp": "^0.35.5"
+  }
+}

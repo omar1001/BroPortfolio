@@ -1,0 +1,27 @@
+{
+  "id": "mgo-computing",
+  "url": "https://mgocomputing.com/",
+  "preset": "wide",
+  "localStorage": { "mgo.locale": "ar", "mgo.currency": "SAR" },
+  "block": ["api.web3forms.com", "api.country.is", "ipwho.is", "connect.facebook.net", "wa.me", "api.whatsapp.com"],
+  "css": "a.fixed[href*='wa.me']{display:none!important}",
+  "note": "Live site, Arabic + SAR. The floating WhatsApp button is hidden for platform-safe images. Never submit the quote form.",
+  "shots": [
+    { "name": "hero-ar", "steps": [{ "wait": 1200 }] },
+    { "name": "pricing-ar", "steps": [{ "eval": "document.querySelector('#pricing').scrollIntoView({block:'start'})" }, { "wait": 900 }] },
+    { "name": "calculator-ar", "steps": [
+      { "eval": "document.querySelector('#calculator').scrollIntoView({block:'start'})" }, { "wait": 700 },
+      { "eval": "(()=>{const cb=[...document.querySelectorAll('#calculator input[type=checkbox]')]; cb.slice(0,3).forEach(c=>{ if(!c.checked) c.click(); });})()" },
+      { "wait": 900 }
+    ] },
+    { "name": "faq-ar", "steps": [
+      { "eval": "document.querySelector('#faq').scrollIntoView({block:'start'})" }, { "wait": 500 },
+      { "click": "#faq button[aria-expanded] >> nth=0" }, { "wait": 900 }
+    ] },
+    { "name": "hero-en", "steps": [
+      { "scroll": 0 }, { "wait": 300 },
+      { "click": "header button:has-text('English')" }, { "wait": 1200 }, { "scroll": 0 }, { "wait": 400 }
+    ] },
+    { "name": "mobile-ar", "preset": "mobile", "steps": [{ "wait": 1200 }] }
+  ]
+}

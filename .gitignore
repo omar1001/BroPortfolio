@@ -1,0 +1,12 @@
+node_modules/
+dist/
+kit/
+.wrangler/
+firebase.json
+.firebase/
+*.log
+content/media/**/_failed-*.png
+.DS_Store
+Thumbs.db
+.work/
+.claude/

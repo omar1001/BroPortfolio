@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-root="{{ROOT}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{{HEAD}}
+<link rel="icon" href="{{ROOT}}assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Readex+Pro:wght@300..700&display=swap">
+<link rel="stylesheet" href="{{ROOT}}assets/css/styles.css">
+<script src="{{ROOT}}assets/js/boot.js"></script>
+</head>
+<body data-page="home">
+<a class="skip" href="#work" data-i18n="skip">Skip to projects</a>
+<div id="via-banner" class="via-banner" hidden></div>
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <div id="hero-eyebrow"></div>
+        <h1 id="hero-title"></h1>
+        <p class="lead" id="hero-lead"></p>
+        <div class="hero-cta" id="hero-cta"></div>
+        <div class="stats" id="hero-stats"></div>
+      </div>
+      <div class="fan" id="hero-fan" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <div class="strip" id="strip" aria-hidden="true"><div class="strip-track" id="strip-track"></div></div>
+
+  <section class="section" id="services" aria-labelledby="services-title">
+    <div class="wrap">
+      <div class="section-head"><div><div class="kicker" id="services-kicker"></div><h2 id="services-title"></h2><p id="services-sub"></p></div></div>
+      <div class="services" id="services-list"></div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head"><div><div class="kicker" id="work-kicker"></div><h2 id="work-title"></h2><p id="work-sub"></p></div></div>
+      <div class="filters" id="filters" role="toolbar"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="wrap about">
+      <div class="about-text">
+        <div class="kicker" id="about-kicker"></div>
+        <h2 id="about-title" style="font-size:clamp(28px,3.6vw,40px);margin-block:8px 18px"></h2>
+        <div id="about-body"></div>
+        <div class="stack-groups" id="stack"></div>
+      </div>
+      <div>
+        <h3 id="exp-title" style="font-size:18px;margin-bottom:10px"></h3>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="wrap"><div class="contact-box" id="contact-box"></div></div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<noscript><p style="padding:24px;text-align:center">This portfolio needs JavaScript. / يحتاج هذا المعرض إلى تفعيل JavaScript.</p></noscript>
+
+<script src="{{ROOT}}data/profile.js"></script>
+<script src="{{ROOT}}data/projects.js"></script>
+<script src="{{ROOT}}data/media.js"></script>
+<script src="{{ROOT}}assets/js/app.js"></script>
+</body>
+</html>

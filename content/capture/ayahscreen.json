@@ -1,0 +1,137 @@
+{
+ "id": "ayahscreen",
+ "url": "http://localhost:7373/",
+ "preset": "wide",
+ "note": "Local app: start it first (cwd AyahScreen: node src/index.js). Overlay shots use the built-in ?demo=1 mode: no socket, no player, no audio. Manager shots never press Save/Load/Copy/Delete or any download button.",
+ "shots": [
+  {
+   "name": "overlay-mihrab",
+   "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "dpr": 1
+   },
+   "path": "/overlay/?demo=1&theme=mihrab&capture=1",
+   "steps": [
+    {
+     "waitFor": "html[data-fit]"
+    },
+    {
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "name": "overlay-layl-highlight",
+   "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "dpr": 1
+   },
+   "path": "/overlay/?demo=1&theme=layl&capture=1&hl=walk",
+   "steps": [
+    {
+     "waitFor": "html[data-fit]"
+    },
+    {
+     "wait": 2600
+    }
+   ]
+  },
+  {
+   "name": "overlay-kiswa-nocards",
+   "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "dpr": 1
+   },
+   "path": "/overlay/?demo=1&theme=kiswa&capture=1&words=0",
+   "steps": [
+    {
+     "waitFor": "html[data-fit]"
+    },
+    {
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "name": "overlay-raqq",
+   "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "dpr": 1
+   },
+   "path": "/overlay/?demo=1&theme=raqq&capture=1",
+   "steps": [
+    {
+     "waitFor": "html[data-fit]"
+    },
+    {
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "name": "overlay-bahr",
+   "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "dpr": 1
+   },
+   "path": "/overlay/?demo=1&theme=bahr&capture=1",
+   "steps": [
+    {
+     "waitFor": "html[data-fit]"
+    },
+    {
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "name": "overlay-sajjada",
+   "viewport": {
+    "width": 1080,
+    "height": 1920,
+    "dpr": 1
+   },
+   "path": "/overlay/?demo=1&theme=sajjada&capture=1",
+   "steps": [
+    {
+     "waitFor": "html[data-fit]"
+    },
+    {
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "name": "manager-screen",
+   "path": "/manager",
+   "steps": [
+    {
+     "wait": 1200
+    },
+    {
+     "click": "button[data-tab=screen]"
+    },
+    {
+     "wait": 2800
+    }
+   ]
+  },
+  {
+   "name": "manager-sheikhs",
+   "steps": [
+    {
+     "click": "button[data-tab=sheikhs]"
+    },
+    {
+     "wait": 1500
+    }
+   ]
+  }
+ ],
+ "waitUntil": "load"
+}

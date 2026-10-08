@@ -1,0 +1,357 @@
+{
+  "id": "boardo",
+  "url": "https://boardo.online/",
+  "preset": "wide",
+  "block": [
+    "firestore.googleapis.com",
+    "identitytoolkit.googleapis.com",
+    "securetoken.googleapis.com"
+  ],
+  "setup": [
+    {
+      "click": "text=My Board"
+    },
+    {
+      "wait": 900
+    },
+    {
+      "click": ".add-task-btn >> nth=0"
+    },
+    {
+      "fill": [
+        "textarea.add-task-input",
+        "Design the new homepage"
+      ]
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "keys": "Write the About page copy"
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "keys": "Collect product photos"
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "keys": "Plan the launch email"
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "press": "Escape"
+    },
+    {
+      "wait": 300
+    },
+    {
+      "click": ".add-task-btn >> nth=1"
+    },
+    {
+      "fill": [
+        "textarea.add-task-input",
+        "Build the price calculator"
+      ]
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "keys": "Online booking form"
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "press": "Escape"
+    },
+    {
+      "wait": 300
+    },
+    {
+      "click": ".add-task-btn >> nth=2"
+    },
+    {
+      "fill": [
+        "textarea.add-task-input",
+        "Buy domain and hosting"
+      ]
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "keys": "Wireframes approved"
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "keys": "Brand colors and fonts"
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 250
+    },
+    {
+      "press": "Escape"
+    },
+    {
+      "wait": 300
+    },
+    {
+      "click": ".task-card:has-text('Design the new homepage')"
+    },
+    {
+      "wait": 500
+    },
+    {
+      "fill": [
+        "input.due-date-input",
+        "2026-10-14"
+      ]
+    },
+    {
+      "click": "button.color-swatch >> nth=8"
+    },
+    {
+      "fill": [
+        "textarea.card-description-input",
+        "Hero with the new photos, three service cards and a clear call to action. Mobile first."
+      ]
+    },
+    {
+      "fill": [
+        "input.checklist-add-input",
+        "Hero section"
+      ]
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 200
+    },
+    {
+      "fill": [
+        "input.checklist-add-input",
+        "Services cards"
+      ]
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 200
+    },
+    {
+      "fill": [
+        "input.checklist-add-input",
+        "Contact call to action"
+      ]
+    },
+    {
+      "press": "Enter"
+    },
+    {
+      "wait": 200
+    },
+    {
+      "click": ".btn-secondary:has-text('Done')"
+    },
+    {
+      "wait": 400
+    },
+    {
+      "click": ".task-card:has-text('Build the price calculator')"
+    },
+    {
+      "wait": 500
+    },
+    {
+      "fill": [
+        "input.due-date-input",
+        "2026-10-09"
+      ]
+    },
+    {
+      "click": "button.color-swatch >> nth=3"
+    },
+    {
+      "click": ".btn-secondary:has-text('Done')"
+    },
+    {
+      "wait": 400
+    },
+    {
+      "click": ".task-card:has-text('Online booking form')"
+    },
+    {
+      "wait": 500
+    },
+    {
+      "fill": [
+        "input.due-date-input",
+        "2026-10-21"
+      ]
+    },
+    {
+      "click": "button.color-swatch >> nth=6"
+    },
+    {
+      "click": ".btn-secondary:has-text('Done')"
+    },
+    {
+      "wait": 400
+    },
+    {
+      "click": ".task-card:has-text('Plan the launch email')"
+    },
+    {
+      "wait": 500
+    },
+    {
+      "fill": [
+        "input.due-date-input",
+        "2026-10-27"
+      ]
+    },
+    {
+      "click": "button.color-swatch >> nth=10"
+    },
+    {
+      "click": ".btn-secondary:has-text('Done')"
+    },
+    {
+      "wait": 400
+    }
+  ],
+  "shots": [
+    {
+      "name": "board"
+    },
+    {
+      "name": "card",
+      "steps": [
+        {
+          "click": ".task-card >> text=Design the new homepage"
+        },
+        {
+          "wait": 700
+        }
+      ]
+    },
+    {
+      "name": "calendar",
+      "steps": [
+        {
+          "press": "Escape"
+        },
+        {
+          "wait": 300
+        },
+        {
+          "click": ".view-toggle-btn:has-text('Calendar')"
+        },
+        {
+          "wait": 800
+        }
+      ]
+    },
+    {
+      "name": "board-dark",
+      "colorScheme": "dark",
+      "steps": [
+        {
+          "click": ".view-toggle-btn:has-text('Board')"
+        },
+        {
+          "wait": 800
+        }
+      ]
+    },
+    {
+      "name": "mobile",
+      "preset": "mobile",
+      "steps": [
+        {
+          "click": "text=My Board"
+        },
+        {
+          "wait": 900
+        },
+        {
+          "click": ".add-task-btn >> nth=0"
+        },
+        {
+          "fill": [
+            "textarea.add-task-input",
+            "Design the new homepage"
+          ]
+        },
+        {
+          "press": "Enter"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "keys": "Write the About page copy"
+        },
+        {
+          "press": "Enter"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "keys": "Collect product photos"
+        },
+        {
+          "press": "Enter"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "press": "Escape"
+        },
+        {
+          "wait": 500
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-root="{{ROOT}}" data-project="{{PROJECT_ID}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{{HEAD}}
+<link rel="icon" href="{{ROOT}}assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Readex+Pro:wght@300..700&display=swap">
+<link rel="stylesheet" href="{{ROOT}}assets/css/styles.css">
+<script src="{{ROOT}}assets/js/boot.js"></script>
+</head>
+<body data-page="project">
+<a class="skip" href="#gallery" data-i18n="skipGallery">Skip to screenshots</a>
+<div id="via-banner" class="via-banner" hidden></div>
+<header class="site-header" id="site-header"></header>
+
+<main id="main">
+  <div class="wrap">
+    <nav class="crumbs" id="crumbs" aria-label="Breadcrumb"></nav>
+    <header class="p-head" id="p-head"></header>
+    <section class="gallery" id="gallery" aria-label="Screenshots"></section>
+    <section class="p-body" id="p-body"></section>
+    <section class="more" id="more" aria-labelledby="more-title"></section>
+  </div>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+<noscript><p style="padding:24px;text-align:center">This page needs JavaScript. / تحتاج هذه الصفحة إلى تفعيل JavaScript.</p></noscript>
+
+<script src="{{ROOT}}data/profile.js"></script>
+<script src="{{ROOT}}data/projects.js"></script>
+<script src="{{ROOT}}data/media.js"></script>
+<script src="{{ROOT}}assets/js/app.js"></script>
+</body>
+</html>

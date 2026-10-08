@@ -1,0 +1,34 @@
+{
+  "id": "taste-engine",
+  "url": "https://omar1001.github.io/taste-engine/demo/",
+  "preset": "desktop",
+  "block": ["api.openai.com", "api.anthropic.com", "api.groq.com", "openrouter.ai", "localhost:11434", "localhost:1234"],
+  "note": "Live demo runs on built-in sample decks (no key, no network calls to models).",
+  "shots": [
+    { "name": "topic", "steps": [{ "waitFor": "taste-engine >> form[data-action='start']" }, { "wait": 500 }] },
+    { "name": "clash", "steps": [
+      { "click": "taste-engine >> [data-action='use-topic'][data-topic='Minimalist UI design style']" },
+      { "waitFor": "taste-engine >> article.te-card >> nth=1" }, { "wait": 1400 },
+      { "eval": "document.querySelector('taste-engine').scrollIntoView({block:'start'})" }, { "wait": 300 }
+    ] },
+    { "name": "results", "steps": [
+      { "click": "taste-engine >> [data-action='pick'][data-side='champion']" }, { "wait": 1600 },
+      { "click": "taste-engine >> [data-action='pick'][data-side='champion']" }, { "wait": 1600 },
+      { "click": "taste-engine >> [data-action='keep-both']" }, { "wait": 1600 },
+      { "click": "taste-engine >> [data-action='finish-early']" }, { "wait": 1200 },
+      { "click": "taste-engine >> [data-action='set-format'][data-format='system-prompt']" }, { "wait": 600 },
+      { "eval": "document.querySelector('taste-engine').scrollIntoView({block:'start'})" }, { "wait": 300 }
+    ] },
+    { "name": "theme-editor", "fresh": true, "steps": [
+      { "waitFor": "taste-engine >> form[data-action='start']" },
+      { "click": "taste-engine >> [data-action='open-themes']" }, { "wait": 700 },
+      { "eval": "document.querySelector('taste-engine').scrollIntoView({block:'start'})" }, { "wait": 300 }
+    ] },
+    { "name": "clash-dark", "preset": "wide", "colorScheme": "dark", "steps": [
+      { "eval": "localStorage.setItem('taste-engine:theme', JSON.stringify('dark-arcade'))" }, { "reload": true }, { "wait": 800 },
+      { "click": "taste-engine >> [data-action='use-topic'][data-topic='Coffee flavour preference']" },
+      { "waitFor": "taste-engine >> article.te-card >> nth=1" }, { "wait": 1400 },
+      { "eval": "document.querySelector('taste-engine').scrollIntoView({block:'start'})" }, { "wait": 300 }
+    ] }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+ "id": "iskandarani",
+ "url": "http://localhost:5173/",
+ "preset": "wide",
+ "waitUntil": "load",
+ "block": [
+  "www.googletagmanager.com",
+  "www.google-analytics.com"
+ ],
+ "note": "Template storefront run locally (cwd 'Iskandarani template': npm run dev:landing) on the seeded TEST project. View-only: never press Continue as guest / Place Order (they write real data).",
+ "shots": [
+  {
+   "name": "home",
+   "steps": [
+    {
+     "wait": 4500
+    }
+   ]
+  },
+  {
+   "name": "dishes",
+   "steps": [
+    {
+     "eval": "window.scrollTo(0, 640)"
+    },
+    {
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "name": "menu",
+   "path": "/menu",
+   "steps": [
+    {
+     "wait": 4500
+    }
+   ]
+  },
+  {
+   "name": "customize",
+   "steps": [
+    {
+     "click": "button:has-text('Customize') >> nth=0"
+    },
+    {
+     "wait": 1200
+    },
+    {
+     "click": "text=Double"
+    },
+    {
+     "wait": 300
+    },
+    {
+     "click": "text=Extra Cheese"
+    },
+    {
+     "wait": 800
+    },
+    {
+     "eval": "(()=>{const el=[...document.querySelectorAll('*')].find(e=>e.textContent.trim()==='Extra Cheese'); if(el) el.scrollIntoView({block:'center'});})()"
+    },
+    {
+     "wait": 500
+    }
+   ]
+  },
+  {
+   "name": "mobile-cart",
+   "preset": "mobile",
+   "steps": [
+    {
+     "goto": "/menu"
+    },
+    {
+     "wait": 4500
+    },
+    {
+     "click": "button:has-text('Customize') >> nth=0"
+    },
+    {
+     "wait": 1200
+    },
+    {
+     "click": "text=Double"
+    },
+    {
+     "wait": 300
+    },
+    {
+     "click": "text=Extra Cheese"
+    },
+    {
+     "wait": 300
+    },
+    {
+     "click": "button:has-text('Add to cart'):has-text('LE')"
+    },
+    {
+     "wait": 1200
+    },
+    {
+     "press": "Escape"
+    },
+    {
+     "wait": 400
+    },
+    {
+     "click": "button:has-text('Add to cart') >> nth=0"
+    },
+    {
+     "wait": 1200
+    },
+    {
+     "goto": "/cart"
+    },
+    {
+     "wait": 3000
+    }
+   ]
+  }
+ ]
+}

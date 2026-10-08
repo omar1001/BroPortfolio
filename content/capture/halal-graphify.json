@@ -1,0 +1,12 @@
+{
+  "id": "halal-graphify",
+  "url": "https://pypi.org/project/halal-graphify/",
+  "preset": "wide",
+  "waitUntil": "load",
+  "note": "Read-only: opens graph pages that halal-graphify already generated (no CLI run) and the public PyPI page.",
+  "shots": [
+    { "name": "force-graph", "colorScheme": "dark", "path": "file:///{HOME}/Desktop/With%20a%20Toungue/graphify-out/graph.html", "steps": [{ "wait": 12000 }] },
+    { "name": "explorer", "path": "file:///{HOME}/Desktop/Iskandarani%20Template/Iskandarani%20template/graphify-out/EXPLORER.html", "steps": [{ "wait": 4000 }] },
+    { "name": "pypi", "colorScheme": "light", "path": "https://pypi.org/project/halal-graphify/", "steps": [{ "wait": 1500 }] }
+  ]
+}

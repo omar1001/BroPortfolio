@@ -1,0 +1,19 @@
+{
+  "id": "media-toolkit",
+  "url": "http://127.0.0.1:8765/",
+  "extension": "{HOME}/Browser extensions/media-toolkit",
+  "serve": { "dir": ".work/mt-test", "port": 8765 },
+  "preset": "desktop",
+  "colorScheme": "dark",
+  "waitUntil": "load",
+  "note": "Loads the unpacked extension into a throwaway headless Edge profile and uses a local test page (.work/mt-test: generated video + one of my own images). Never clicks Download or quick-save.",
+  "setup": [{ "eval": "document.querySelector('#v').play()" }, { "wait": 1800 }],
+  "shots": [
+    { "name": "panel-video", "steps": [{ "rightclick": ["#v", 0.32, 0.18] }, { "wait": 600 }] },
+    { "name": "speed-page", "steps": [{ "press": "ArrowDown" }, { "wait": 150 }, { "press": "ArrowDown" }, { "wait": 150 }, { "press": "Enter" }, { "wait": 600 }] },
+    { "name": "playback-bar", "steps": [{ "press": "Escape" }, { "wait": 300 }, { "press": "Escape" }, { "wait": 300 }, { "hoverAt": ["#v", 0.5, 0.6] }, { "wait": 900 }] },
+    { "name": "lip-sync", "steps": [{ "hoverAt": ["#v", 0.5, 0.5] }, { "press": "Control+Alt+ArrowUp" }, { "wait": 250 }, { "press": "Control+Alt+Shift+ArrowRight" }, { "wait": 150 }, { "press": "Control+Alt+Shift+ArrowRight" }, { "wait": 250 }], "settle": 150 },
+    { "name": "image-panel", "steps": [{ "press": "Control+Alt+ArrowDown" }, { "scrollTo": "#i" }, { "wait": 500 }, { "rightclick": ["#i", 0.35, 0.25] }, { "wait": 600 }] },
+    { "name": "zoom-image", "steps": [{ "press": "ArrowDown" }, { "wait": 150 }, { "press": "Enter" }, { "wait": 500 }, { "wheel": ["#i", -120, 4] }, { "wait": 500 }] }
+  ]
+}

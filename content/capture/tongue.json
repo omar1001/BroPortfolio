@@ -1,0 +1,39 @@
+{
+ "id": "tongue",
+ "url": "http://127.0.0.1:8321/",
+ "preset": "desktop",
+ "colorScheme": "dark",
+ "note": "Local app: start the server first (cwd 'With a Toungue': .venv/Scripts/python.exe -m app.server). The injected CSS applies the intended [hidden] behaviour (the app's .overlay/.empty rules override it in Chromium). 'karaoke' plays the CACHED render only (kokoro/af_bella) - no model load; the browser is muted.",
+ "css": "[hidden]{display:none!important}",
+ "shots": [
+  {
+   "name": "reader",
+   "steps": [
+    {
+     "wait": 900
+    },
+    {
+     "click": ".card-title:has-text('Start here')"
+    },
+    {
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "name": "karaoke",
+   "steps": [
+    {
+     "click": "#btn-play"
+    },
+    {
+     "wait": 6500
+    },
+    {
+     "eval": "[...document.querySelectorAll('body *')].filter(e=>e.children.length===0 && /loading the voice model/i.test(e.textContent)).forEach(e=>{let t=e; const r=()=>t.getBoundingClientRect(); while(t.parentElement && t.parentElement.getBoundingClientRect().height<60 && t.parentElement!==document.body) t=t.parentElement; t.style.visibility='hidden';})"
+    }
+   ],
+   "settle": 200
+  }
+ ]
+}

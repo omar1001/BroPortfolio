@@ -1,0 +1,14 @@
+{
+  "id": "bro-video-creator",
+  "url": "http://127.0.0.1:7860/",
+  "preset": "wide",
+  "colorScheme": "dark",
+  "note": "Local app: start it first (desktop icon, or .venv/Scripts/python.exe app/server.py). View-only recipe: never clicks generate, export, aspect-ratio or settings buttons.",
+  "shots": [
+    { "name": "home", "steps": [{ "wait": 900 }] },
+    { "name": "story", "steps": [{ "click": "text=Cat Turns Back" }, { "wait": 1600 }] },
+    { "name": "parts", "steps": [{ "click": "button:has-text('2 Parts')" }, { "wait": 2200 }] },
+    { "name": "images", "steps": [{ "click": "button:has-text('3 Images')" }, { "wait": 2200 }] },
+    { "name": "final-video", "steps": [{ "click": "button:has-text('5 Final videos')" }, { "wait": 2200 }] }
+  ]
+}

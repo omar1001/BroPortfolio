@@ -1,0 +1,11 @@
+{
+  "id": "agent-toolkit",
+  "url": "file:///{HOME}/Desktop/milestone-orchestrator-guide.html",
+  "preset": "desktop",
+  "waitUntil": "load",
+  "note": "Static guide page (no scripts) + the public kernel README. Never capture guide section 9 (local paths).",
+  "shots": [
+    { "name": "guide-top", "steps": [{ "wait": 600 }] },
+    { "name": "kernel-readme", "path": "https://github.com/omar1001/falsifiability-kernel#5-quickstart-watch-it-catch-bugs", "steps": [{ "wait": 2500 }] }
+  ]
+}

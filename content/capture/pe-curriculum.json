@@ -1,0 +1,15 @@
+{
+  "id": "pe-curriculum",
+  "url": "file:///{HOME}/Desktop/BroPortfolio/.work/pe-curriculum-planner.html",
+  "preset": "desktop",
+  "waitUntil": "load",
+  "note": "Uses a SANITIZED copy made outside the client project (.work/, name removed). Opened as file:// so it never syncs. Never open the live site or any ?k= link.",
+  "shots": [
+    { "name": "home", "steps": [{ "goto": "#/" }, { "wait": 900 }] },
+    { "name": "lesson", "steps": [{ "goto": "#/p/g1g-t1-w06-p1" }, { "wait": 900 }] },
+    { "name": "year-plan", "steps": [{ "goto": "#/g/g1g/t1" }, { "wait": 900 }] },
+    { "name": "safety", "steps": [{ "goto": "#/safety" }, { "wait": 900 }] },
+    { "name": "lesson-ar", "steps": [{ "goto": "#/p/g23b-t1-w02-p1" }, { "wait": 600 }, { "click": "#lang-toggle" }, { "wait": 900 }] },
+    { "name": "mobile-lesson", "preset": "mobile", "steps": [{ "goto": "#/p/kg-t1-w05-p1" }, { "wait": 900 }] }
+  ]
+}
