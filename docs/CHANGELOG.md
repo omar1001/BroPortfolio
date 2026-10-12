@@ -60,3 +60,25 @@ Pages project `omar-abossrie`, `siteUrl` = https://omar-abossrie.pages.dev — N
 login had expired and the OAuth login timed out (nobody clicked Allow). Omar runs `npx wrangler login`, then Publish.bat.
 
 **Open:** investment-share demo fund; Iskandarani admin screens; Bro Mic live re-shoot; `profile.platforms` URLs.
+
+## 2026-10-12 — Published on Firebase Hosting
+
+**What:** The site is live at **https://omar-abossrie.web.app** (Omar: "publish it to my firebase or cloudflare
+whichever will be free"). Both are free; Cloudflare's saved wrangler login had expired again ("could not be
+refreshed, the environment is non-interactive") and needs Omar's browser "Allow" click, while the Firebase CLI
+was still logged in. So the default target is now Firebase.
+
+**Where:**
+- New Firebase project **`omar-abossrie`** ("Omar Abossrie Portfolio", Spark plan — no billing account, so it can
+  never charge). Its own project on purpose: the free 360 MB/day traffic allowance is per project, and sharing
+  `mgocomputing`'s would let portfolio visits eat the company site's allowance during ad campaigns.
+- `bro.config.json` — `deployTarget: "firebase"`, `firebaseProject: "omar-abossrie"` (Cloudflare name kept).
+- `content/profile.js:13` — `siteUrl` → `https://omar-abossrie.web.app` (OG tags, sitemap and every kit link use it).
+- `tools/deploy.mjs` — `firebaseCli()` runs `node <global firebase-tools>/lib/bin/firebase.js` instead of
+  `firebase` through `shell: true`: from Git Bash, cmd.exe said "'firebase' is not recognized" (even
+  `firebase.cmd`) although `where firebase` found it. Falls back to the shell when firebase-tools isn't global.
+- `README.md`, `docs/GROUND-TRUTH.md` — Firebase is the default, Cloudflare the alternative.
+
+**Verified live:** `/`, `/p/jotlite/`, `/p/boardo/`, `/kit.html` (`X-Robots-Tag: noindex`), `/sitemap.xml`,
+`/robots.txt`, `/og.png`, images → 200; unknown page → 404; headless screenshots of the Arabic home and of
+`/p/boardo/?via=khamsat` (Khamsat banner shown, contact hidden).

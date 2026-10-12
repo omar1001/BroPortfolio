@@ -28,7 +28,8 @@ Excluded: Report Cards (Omar), Video Downloader (Omar skipped it), games except 
 it), Alzheimer research (client + ADNI data), Voice Call
 (roleplay presets in its public repo), CPU Tuner (admin + kernel driver for temps), science-shorts
 (no episode yet), browait-jobs, Detector, Quran research. Boardo GitHub link withheld (repo leaks a Search
-Console page). MGO live link hidden on platforms (WhatsApp funnel). Hosting: Cloudflare Pages.
+Console page). MGO live link hidden on platforms (WhatsApp funnel). **Hosting: Firebase Hosting, project `omar-abossrie` →
+https://omar-abossrie.web.app** (live since 2026-10-12; Cloudflare's saved login kept expiring).
 
 ## Folder map
 - `content/` — profile.js, projects.js (the data), `media/<id>/` raw screenshots, `capture/<id>.json` recipes
@@ -39,10 +40,9 @@ Console page). MGO live link hidden on platforms (WhatsApp funnel). Hosting: Clo
 
 ## Commands
 `Preview.bat` / `npm run preview` · `node tools/build.mjs [--force]` · `node tools/shoot.mjs <id> [--only a,b]` ·
-`node tools/probe.mjs <url> '[steps]' out.png [--preset mobile] [--until load]` · `Publish.bat` / `node tools/deploy.mjs [cloudflare|firebase]` · `Add Project.bat`
+`node tools/probe.mjs <url> '[steps]' out.png [--preset mobile] [--until load]` · `Publish.bat` / `node tools/deploy.mjs [firebase|cloudflare]` · `Add Project.bat`
 
 ## Open items
-- **First Cloudflare deploy pending:** Omar runs `npx wrangler login` (click Allow), then `Publish.bat`.
 - investment-share (VOX Motors) needs a demo fund Omar creates (throwaway Firebase project or demo account) — hidden.
 - iskandarani: admin/POS screens need the Cafe Nour demo seeded + Omar signing in.
 - Bro Mic did not link during capture (PC "connected but no audio", phone "waiting for the PC") — standby shots used; re-shoot live later.
@@ -60,3 +60,4 @@ Console page). MGO live link hidden on platforms (WhatsApp funnel). Hosting: Clo
 | Date | Headline | Read before touching |
 |---|---|---|
 | 2026-10-08 | v1: engine, 19 projects, kit, privacy rules; Report Cards excluded; GitHub published, Cloudflare pending login | everything (first entry) |
+| 2026-10-12 | **Site LIVE on Firebase** — https://omar-abossrie.web.app (new project `omar-abossrie`); deploy runs the Firebase CLI through node | `tools/deploy.mjs`, `bro.config.json`, `content/profile.js` siteUrl |
