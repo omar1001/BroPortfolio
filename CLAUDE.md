@@ -22,6 +22,9 @@ and `kit/` (Mostaql / Khamsat / Freelancer upload kit). Screenshots come from JS
    and a `-Mode done` alarm after. Headless browsers and background servers don't need it.
 6. Kit images are **1600×920** (Khamsat 800×460 shape). `dist/` and `kit/` are generated — never hand-edit.
 7. **Recipes never contain the Windows user name** — use `{HOME}`.
+8. **The company export (`content/exports/mgo.js`) speaks as "we"** — no personal name, no GitHub/PyPI links,
+   no screenshot showing the account (skip or redact there, never in the personal site). Its `forbid` list
+   must keep failing the export on omar1001 / Abossrie / Omar (Omar, 2026-10-12: "not say Omar is the owner").
 
 ## Decisions (who/when in docs/CHANGELOG.md 2026-10-08)
 Excluded: Report Cards (Omar), Video Downloader (Omar skipped it), games except SUBLEVEL (Omar asked for
@@ -32,15 +35,16 @@ Console page). MGO live link hidden on platforms (WhatsApp funnel). **Hosting: F
 https://omar-abossrie.web.app** (live since 2026-10-12; Cloudflare's saved login kept expiring).
 
 ## Folder map
-- `content/` — profile.js, projects.js (the data), `media/<id>/` raw screenshots, `capture/<id>.json` recipes
+- `content/` — profile.js, projects.js (the data), `media/<id>/` raw screenshots, `capture/<id>.json` recipes, `exports/<name>.js` (other sites fed with the projects — `mgo.js` = mgocomputing.com)
 - `web/` — index.html, project.html, kit.html, assets/ (css, js, img) — templates use `{{ROOT}}`/`{{HEAD}}`
-- `tools/` — build, shoot, probe, serve, deploy, new-project, redact; `lib/` (browser, compose, content, kit-text, steps); wincap.ps1, alarm.ps1
+- `tools/` — build, shoot, probe, serve, deploy, export, new-project, redact; `lib/` (browser, compose, content, firebase, kit-text, redact, steps); wincap.ps1, alarm.ps1
 - `docs/` — ARCHITECTURE.md, CHANGELOG.md, GROUND-TRUTH.md, screenshots/
 - `.work/` (gitignored) — sanitized client copies, demo test pages, seed scripts
 
 ## Commands
 `Preview.bat` / `npm run preview` · `node tools/build.mjs [--force]` · `node tools/shoot.mjs <id> [--only a,b]` ·
-`node tools/probe.mjs <url> '[steps]' out.png [--preset mobile] [--until load]` · `Publish.bat` / `node tools/deploy.mjs [firebase|cloudflare]` · `Add Project.bat`
+`node tools/probe.mjs <url> '[steps]' out.png [--preset mobile] [--until load]` · `Publish.bat` / `node tools/deploy.mjs [firebase|cloudflare]` · `Add Project.bat` ·
+`Update MGO Site.bat` / `node tools/export.mjs mgo [--publish]` (company site: export → preview → asks → publish → commit there)
 
 ## Open items
 - investment-share (VOX Motors) needs a demo fund Omar creates (throwaway Firebase project or demo account) — hidden.
@@ -61,3 +65,4 @@ https://omar-abossrie.web.app** (live since 2026-10-12; Cloudflare's saved login
 |---|---|---|
 | 2026-10-08 | v1: engine, 19 projects, kit, privacy rules; Report Cards excluded; GitHub published, Cloudflare pending login | everything (first entry) |
 | 2026-10-12 | **Site LIVE on Firebase** — https://omar-abossrie.web.app (new project `omar-abossrie`); deploy runs the Firebase CLI through node | `tools/deploy.mjs`, `bro.config.json`, `content/profile.js` siteUrl |
+| 2026-10-12 | **Company site fed from here** — `tools/export.mjs` + `content/exports/mgo.js` → mgocomputing.com "أعمالنا" (18 projects, LIVE); halal-graphify CAPTCHA screenshot removed; build now deletes stale kit/web images | `tools/export.mjs`, `content/exports/mgo.js`, `tools/build.mjs` (cleanup), `tools/lib/{redact,firebase}.mjs` |

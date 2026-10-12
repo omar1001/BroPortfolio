@@ -775,8 +775,7 @@ window.BRO_PROJECTS = [
     },
     images: [
       { file: 'force-graph.png', caption: { en: 'A whole app as a knowledge graph', ar: 'تطبيق كامل كخريطة معرفية' } },
-      { file: 'explorer.png', caption: { en: 'The offline explorer: areas and their dependencies', ar: 'صفحة الاستكشاف: أجزاء المشروع والاعتماديات بينها' } },
-      { file: 'pypi.png', caption: { en: 'Published on PyPI', ar: 'منشورة على PyPI' } }
+      { file: 'explorer.png', caption: { en: 'The offline explorer: areas and their dependencies', ar: 'صفحة الاستكشاف: أجزاء المشروع والاعتماديات بينها' } }
     ],
     cover: { main: 'force-graph.png' }
   },

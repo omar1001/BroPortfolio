@@ -15,6 +15,7 @@ Add a project, let it take the screenshots, and publish for free. Made for freel
 | **Platform-safe links** | Links ending in `?via=mostaql`, `?via=khamsat` or `?via=freelancer` hide all contact details (the platforms forbid sharing them) and show a "Hire me on …" button instead. The build refuses platform texts that contain an e-mail, phone number or WhatsApp/Telegram link. |
 | **Automatic screenshots** | Small JSON "recipes" drive a real browser through your web app — click, type, draw, switch to dark mode, open on a phone — and save the pictures. Ads and analytics are blocked, so screenshots never count as visits or ad views. Works for live sites, local apps, offline HTML files and even browser extensions. |
 | **Free publishing** | One double-click publishes to **Firebase Hosting** (free Spark plan — it can never charge you). Cloudflare Pages works too. |
+| **Feed another website** | The same projects can be exported into another site — for example your company's — as typed data + WebP images, in that site's own voice (see *Exporting to another website*). |
 
 ![The upload kit](docs/screenshots/site-kit.png)
 
@@ -68,12 +69,37 @@ cover: { main: 'home.png', phone: 'phone-1.png' }
 `bro.config.json` chooses the target and project name. After the first publish, put the address in
 `content/profile.js → siteUrl` and build again — the upload kit uses it for the "link to the work" field.
 
+## Exporting to another website
+
+Keep one list of projects and show it on more than one site. Each target is one file,
+`content/exports/<name>.js`, and one command:
+
+```
+node tools/export.mjs <name>              # write the data + images into the other site
+node tools/export.mjs <name> --publish    # ...then lint + build it, preview link, publish after you type "y"
+```
+
+The export writes a typed data module (e.g. `src/portfolio/projects.generated.ts`) and WebP images whose
+names carry a content hash (safe to cache for a year). The target file decides:
+
+- **which projects and in what order** (`exclude`, `order` — a new project is added at the end automatically);
+- **categories** mapped to the other site's own ones (`services`, `extraServices`);
+- **which links** (e.g. live sites only, no GitHub) and **blocked hosts**;
+- **texts in that site's voice** (`overrides`: description, captions…) — e.g. "we" instead of "I" for a company;
+- **screenshots** to leave out (`skipImages`), paint over (`redact`, solid boxes) or use as the card (`coverImage`);
+- **forbidden words** (`forbid`) — the export stops if any of them appears in the texts or links.
+
+`--publish` refuses to go live while the other site has unsaved changes outside the exported files (except
+the ones listed in `allowDirty`), then commits the exported files there. Example: `content/exports/mgo.js`,
+which feeds the portfolio section of mgocomputing.com (double-click **`Update MGO Site.bat`**).
+
 ## Folder map
 
 ```
-content/         YOUR DATA — profile.js, projects.js, media/<id>/ screenshots, capture/<id>.json recipes
+content/         YOUR DATA — profile.js, projects.js, media/<id>/ screenshots, capture/<id>.json recipes,
+                 exports/<name>.js (other websites fed with the same projects)
 web/             the site source (index.html, project.html, kit.html, assets/)
-tools/           build, shoot, probe, serve, deploy, new-project, wincap.ps1, redact, alarm.ps1
+tools/           build, shoot, probe, serve, deploy, export, new-project, wincap.ps1, redact, alarm.ps1
 dist/            generated website (publish this) — never edit by hand
 kit/             generated upload kit — never edit by hand
 docs/            architecture, change log, verified platform rules
@@ -99,6 +125,7 @@ screenshots) belongs to Omar Abossrie and is not covered by the license.
 3. عدّل بياناتك في `content/profile.js` ومشاريعك في `content/projects.js` (لكل نص نسخة `en` إنجليزية و`ar` عربية).
 4. لإضافة مشروع: اضغط **`Add Project.bat`** وأجب عن الأسئلة — وإذا كان للمشروع رابط مباشر تُلتقط الصور تلقائيًا.
 5. للنشر المجاني: اضغط **`Publish.bat`**.
+6. لتحديث قسم «أعمالنا» في موقع شركتك بنفس المشاريع: اضغط **`Update MGO Site.bat`** (يعرض رابط معاينة ثم يسألك قبل النشر).
 
 - **حقيبة الرفع** في مجلد `kit/` وفي صفحة `kit.html`: صور بمقاس 1600×920 ونصوص جاهزة مع زر «نسخ» لكل حقل.
 - **روابط آمنة للمنصات**: أضف `?via=mostaql` أو `?via=khamsat` أو `?via=freelancer` إلى الرابط فتختفي كل وسائل التواصل،

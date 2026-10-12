@@ -11,7 +11,8 @@
     "build": "node tools/build.mjs",
     "new": "node tools/new-project.mjs",
     "preview": "node tools/build.mjs && node tools/serve.mjs --open",
-    "deploy": "node tools/deploy.mjs"
+    "deploy": "node tools/deploy.mjs",
+    "export": "node tools/export.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -9,6 +9,10 @@ content/media/<id>/ ┘        │           │            data/*.js, img/<id>/
                              │           └─► kit/   (<id>/00-cover.png, NN-*.png, mostaql.txt, freelancer.txt,
                              │                       khamsat/<service>/NN-*.png + khamsat.txt)
 content/capture/<id>.json ──► tools/shoot.mjs ──► content/media/<id>/*.png
+
+dist/data/media.js + dist/img ─┐
+content/projects.js           ┼─► tools/export.mjs <name> ─► another site: <dataFile> (typed data)
+content/exports/<name>.js     ┘                                           + <imagesDir>/<id>/*.<hash>.webp
 ```
 
 ## Why it is built this way
@@ -41,6 +45,18 @@ content/capture/<id>.json ──► tools/shoot.mjs ──► content/media/<id>
   (tkinter). Always behind the alarm.
 - **Platform mode** (`?via=…`) is stored in `sessionStorage` so it survives navigation inside the site.
 - **Contact e-mail** is stored as two parts and joined in JS to keep simple scrapers away.
+- **Exports reuse the build's output** (`dist/data/media.js` lists every project's images in order) instead
+  of re-rendering, so another site gets exactly the pictures this site shows. A gallery image's source file
+  is found by its slug (`NN-<slug>.webp`, the build's naming rule) — that is how `skipImages`, `captions`
+  and `redact` in `content/exports/<name>.js` address a screenshot. Redaction happens on the exported
+  copy only; the personal portfolio keeps the original.
+- **The export never deletes what it did not write**: its images folder carries a `.bro-export` marker, and a
+  folder with other files and no marker is refused. Images are written to `<dir>.tmp` and swapped in one move.
+- **`--publish` refuses unsaved work** in the target repo outside the exported files (`allowDirty` lists the
+  exceptions — files that never reach the published site or are uncommitted by that repo's own rule), so
+  one session can never put another session's half-finished change online.
+- **The Firebase CLI runs as `node <firebase-tools>/lib/bin/firebase.js`** (`tools/lib/firebase.mjs`): from
+  Git Bash on Windows a `shell: true` spawn of `firebase.cmd` said "not recognized" though it was on PATH.
 
 ## Files
 
@@ -58,8 +74,13 @@ content/capture/<id>.json ──► tools/shoot.mjs ──► content/media/<id>
 | `tools/shoot.mjs` | runs recipes → `content/media/<id>/` (`{HOME}` placeholder support) |
 | `tools/probe.mjs` | lists clickable elements + screenshot, for writing recipes |
 | `tools/new-project.mjs` | wizard: asks questions, appends a block above the marker in projects.js, shoots a live link |
-| `tools/deploy.mjs` | refuses TODO text, builds, deploys to Cloudflare Pages or Firebase |
+| `tools/deploy.mjs` | refuses TODO text, builds, deploys to Firebase (default) or Cloudflare Pages |
+| `tools/export.mjs` | feeds another website (`content/exports/<name>.js`): data module + hashed WebP, voice overrides, skip/redact, forbidden-word stop, optional lint → build → preview → publish → commit |
+| `tools/lib/redact.mjs` | solid-box redaction shared by `redact.mjs` and `export.mjs` |
+| `tools/lib/firebase.mjs` | runs the Firebase CLI through node (no shell) |
 | `tools/serve.mjs` | local preview server for dist/ |
-| `tools/redact.mjs` | solid-colour redaction boxes (median ring colour) |
+| `tools/redact.mjs` | command-line wrapper around `lib/redact.mjs` (solid boxes, median ring colour) |
+| `content/exports/mgo.js` | export target: the portfolio section of mgocomputing.com (company voice) |
+| `Update MGO Site.bat` | `node tools/export.mjs mgo --publish` by double-click |
 | `tools/wincap.ps1` | native window start/find/capture/invoke/setvalue/keys/clickat/elements/close |
 | `tools/alarm.ps1` | bilingual top-most "free your PC" / "done" dialog with chime |

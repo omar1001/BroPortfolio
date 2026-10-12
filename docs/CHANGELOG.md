@@ -82,3 +82,51 @@ was still logged in. So the default target is now Firebase.
 **Verified live:** `/`, `/p/jotlite/`, `/p/boardo/`, `/kit.html` (`X-Robots-Tag: noindex`), `/sitemap.xml`,
 `/robots.txt`, `/og.png`, images → 200; unknown page → 404; headless screenshots of the Arabic home and of
 `/p/boardo/?via=khamsat` (Khamsat banner shown, contact hidden).
+
+## 2026-10-12 — Export to the company site (mgocomputing.com) + kit/screenshot fixes
+
+**What:** Omar asked for the same portfolio on his company's site, mgocomputing.com ("the company be having
+things made before"), "but not say Omar is the owner". His answers: all projects except the MGO site itself,
+hide GitHub links, publish directly after the checks. Done the same day: the site's new section "أعمالنا"
+is live (record in `Desktop/MGOComputing/docs/CHANGELOG.md`, 2026-10-12, commit `1cc5038` there).
+
+**Where (this repo):**
+- `tools/export.mjs` (new) — `node tools/export.mjs <target> [--publish] [--yes]`. Reads
+  `content/exports/<target>.js`, rebuilds, takes the images from `dist/data/media.js` + `dist/img`, writes a
+  typed data module and hashed WebP files into the other site. `--publish`: refuses unsaved work in the target
+  outside the exported files (`allowDirty` exceptions; folder entries end in "/"), lint → build → preview
+  channel → asks "y" → production → commits only the exported paths there (`git commit -- <paths>`).
+- `content/exports/mgo.js` (new) — the company target: excludes `mgo-computing`, business-first `order`,
+  category → the site's six service ids (+`extraServices`), links live/other only, blocks `github.com`,
+  `pypi.org` and `omar1001.github.io` (the TasteEngine demo's address shows the account name — its link is
+  dropped on the company site only), company-voice overrides (halal-graphify description "my/I" → "our/we",
+  bro-video-creator "on my own PC" caption), screenshots: agent-toolkit `kernel-readme` skipped (git clone URL
+  shows `omar1001`) with `guide-top` as its card, visual-reply `chat-reply` skipped (`omar1001/README.md`),
+  brodashgraphify `graph-viewer` **redacted** at `866,339,134,24` ("(Omar, 11 hours ago)") and used as its card.
+  `forbid` stops the export on omar1001 / Abossrie / أبوسريع / Omar / عمر.
+- `tools/lib/redact.mjs` (new, shared), `tools/redact.mjs` (now a wrapper), `tools/lib/firebase.mjs` (new,
+  shared; `deploy.mjs` uses it).
+- `Update MGO Site.bat` (new, CRLF/ASCII), `package.json` (`npm run export`), README (*Exporting to another
+  website* + Arabic step 6), `docs/ARCHITECTURE.md`.
+
+**Fixes found on the way:**
+- **halal-graphify's 3rd screenshot was a Fastly CAPTCHA page, not PyPI** (the capture hit bot protection) —
+  it was live on omar-abossrie.web.app and in the kit. Entry removed from `content/projects.js`, file
+  `content/media/halal-graphify/pypi.png` deleted. Never try to get past such a page; leave the shot out.
+- `tools/build.mjs` — stale images: a removed/renamed screenshot stayed in `kit/<id>/` (and `dist/img/<id>/`),
+  where it would be uploaded to a platform (found: jotlite `01-editor.png`, `02-landing.png`, and the CAPTCHA).
+  Now each project's kit/web folder keeps only current files, and kit folders of hidden/removed projects
+  are deleted (`kit/khamsat` excepted).
+
+**Decisions not to re-litigate:**
+- The company export speaks as "we": no `role` text (it says "Solo"), no GitHub/PyPI links, no screenshot that
+  shows the account name. Redaction is applied to the exported copy only — the personal site keeps originals.
+- A project added later is exported automatically (placed after the listed `order`); use `exclude` to keep
+  one off the company site.
+- Generated files in the company repo (`src/portfolio/projects.generated.ts`, `public/work/**`) are never
+  edited there; the export is deterministic (a repeat run gives byte-identical files — checked).
+
+**Verified:** export → 18 projects, 180 images (6.4 MB), no forbidden word; the redacted area checked by eye;
+safety check tested on the company repo's real state (ads files allowed) and on a simulated `src/` edit
+(blocked). Company site checks: see its changelog.
+

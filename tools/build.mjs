@@ -176,6 +176,13 @@ async function main() {
       entry.gallery.push({ src: `img/${p.id}/${base}.webp`, thumb: `img/${p.id}/${base}-t.webp`, w: KIT_W, h: KIT_H, caption: g.caption });
     }
     mediaManifest[p.id] = entry;
+
+    // Drop images left by an earlier build: a removed or renamed screenshot must not linger in the kit
+    // folder (it would get uploaded to a platform) or on the website.
+    const keepKit = new Set([coverOut, ...gallery.map((g) => g.out)].filter(Boolean).map((f) => path.basename(f)));
+    for (const f of fs.readdirSync(outDir)) if (f.endsWith('.png') && !keepKit.has(f)) fs.rmSync(path.join(outDir, f));
+    const keepWeb = new Set([entry.cover, ...entry.gallery].filter(Boolean).flatMap((e) => [e.src, e.thumb]).map((s) => path.basename(s)));
+    for (const f of fs.readdirSync(webDir)) if (!keepWeb.has(f)) fs.rmSync(path.join(webDir, f));
   }
 
   // ---- 3. Khamsat service bundles (plain screenshots only, 4–12 per service) ----
@@ -265,9 +272,12 @@ async function main() {
         siteName
       })));
   }
-  // Remove website images of projects that no longer exist / are hidden.
+  // Remove website images and kit folders of projects that no longer exist / are hidden.
   for (const d of fs.existsSync(path.join(DIST, 'img')) ? fs.readdirSync(path.join(DIST, 'img')) : []) {
     if (!vis.some((p) => p.id === d)) fs.rmSync(path.join(DIST, 'img', d), { recursive: true, force: true });
+  }
+  for (const e of fs.readdirSync(KIT, { withFileTypes: true })) {
+    if (e.isDirectory() && e.name !== 'khamsat' && !vis.some((p) => p.id === e.name)) fs.rmSync(path.join(KIT, e.name), { recursive: true, force: true });
   }
 
   fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nDisallow: /kit.html\n${siteUrl ? `Sitemap: ${siteUrl}/sitemap.xml\n` : ''}`);
