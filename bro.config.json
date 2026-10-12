@@ -1,6 +1,6 @@
 {
-  "deployTarget": "cloudflare",
+  "deployTarget": "firebase",
+  "firebaseProject": "omar-abossrie",
   "cloudflareProject": "omar-abossrie",
-  "firebaseProject": "",
   "wranglerVersion": "4"
 }

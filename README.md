@@ -14,7 +14,7 @@ Add a project, let it take the screenshots, and publish for free. Made for freel
 | **Upload kit** | For every project: a thumbnail and gallery images at **1600×920** (the exact shape Khamsat and Mostaql use), plus ready-to-paste **Arabic texts for Mostaql/Khamsat** and **English texts for Freelancer.com**. A kit page (`kit.html`) has a Copy button for every field and remembers what you already posted. |
 | **Platform-safe links** | Links ending in `?via=mostaql`, `?via=khamsat` or `?via=freelancer` hide all contact details (the platforms forbid sharing them) and show a "Hire me on …" button instead. The build refuses platform texts that contain an e-mail, phone number or WhatsApp/Telegram link. |
 | **Automatic screenshots** | Small JSON "recipes" drive a real browser through your web app — click, type, draw, switch to dark mode, open on a phone — and save the pictures. Ads and analytics are blocked, so screenshots never count as visits or ad views. Works for live sites, local apps, offline HTML files and even browser extensions. |
-| **Free publishing** | One double-click publishes to **Cloudflare Pages** (free, no traffic limit). Firebase Hosting works too. |
+| **Free publishing** | One double-click publishes to **Firebase Hosting** (free Spark plan — it can never charge you). Cloudflare Pages works too. |
 
 ![The upload kit](docs/screenshots/site-kit.png)
 
@@ -24,7 +24,7 @@ Add a project, let it take the screenshots, and publish for free. Made for freel
 2. Double-click **`Preview.bat`** — it installs the tools the first time, builds the site and opens it.
 3. Edit **`content/profile.js`** (your name, services, contact) and **`content/projects.js`** (your work).
 4. Double-click **`Add Project.bat`** to add a project with a few questions — if it has a live link, the screenshots are taken for you.
-5. Double-click **`Publish.bat`** to put it online. The first time, log in once with `npx wrangler login`.
+5. Double-click **`Publish.bat`** to put it online. The first time, log in once with `firebase login`.
 
 On macOS/Linux use the same commands: `npm install`, `npm run preview`, `npm run new`, `npm run deploy`.
 
@@ -62,8 +62,8 @@ cover: { main: 'home.png', phone: 'phone-1.png' }
 
 | | Free limits | Address |
 |---|---|---|
-| **Cloudflare Pages** (default) | no traffic limit | `https://<project>.pages.dev` |
-| Firebase Hosting | 10 GB stored, 360 MB/day traffic | `https://<project>.web.app` |
+| **Firebase Hosting** (default) | 10 GB stored, 360 MB/day traffic | `https://<project>.web.app` |
+| Cloudflare Pages | no traffic limit | `https://<project>.pages.dev` |
 
 `bro.config.json` chooses the target and project name. After the first publish, put the address in
 `content/profile.js → siteUrl` and build again — the upload kit uses it for the "link to the work" field.

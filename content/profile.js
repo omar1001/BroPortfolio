@@ -10,7 +10,7 @@ window.BRO_PROFILE = {
 
   // The public address of the site. Set it after the first publish, then build again
   // (the upload kit uses it for the "link to the work" field).
-  siteUrl: 'https://omar-abossrie.pages.dev',
+  siteUrl: 'https://omar-abossrie.web.app',
   repoUrl: 'https://github.com/omar1001/BroPortfolio',
 
   eyebrow: { en: 'Alexandria, Egypt · Available for freelance projects', ar: 'الإسكندرية، مصر · متاح لمشاريع العمل الحر' },

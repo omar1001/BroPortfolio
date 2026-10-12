@@ -5,12 +5,27 @@
 //   node tools/deploy.mjs firebase     Firebase Hosting  (free Spark: 10 GB stored, 360 MB/day traffic) -> <project>.web.app
 // You must be logged in once:  npx wrangler login   /   firebase login
 import fs from 'node:fs';
+import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { P, loadContent, visibleProjects } from './lib/content.mjs';
 
 const cfg = JSON.parse(fs.readFileSync(P('bro.config.json'), 'utf8'));
 const target = process.argv[2] || cfg.deployTarget || 'cloudflare';
 const run = (cmd, args, opts = {}) => spawnSync(cmd, args, { stdio: 'inherit', shell: true, cwd: P(), ...opts });
+
+// The Firebase CLI is started as `node <firebase-tools>/lib/bin/firebase.js`: from some shells (seen from Git Bash
+// on Windows, 2026-10-12) a `shell: true` spawn of firebase.cmd says "not recognized" even though it is on PATH.
+function firebaseCli() {
+  const roots = [];
+  if (process.env.APPDATA) roots.push(path.join(process.env.APPDATA, 'npm', 'node_modules'));
+  const g = spawnSync('npm root -g', { shell: true, encoding: 'utf8' });
+  if (g.status === 0 && g.stdout.trim()) roots.push(g.stdout.trim());
+  for (const root of roots) {
+    const js = path.join(root, 'firebase-tools', 'lib', 'bin', 'firebase.js');
+    if (fs.existsSync(js)) return (args) => spawnSync(process.execPath, [js, ...args], { stdio: 'inherit', cwd: P() });
+  }
+  return (args) => run('firebase', args); // not installed globally: let the shell try (and explain if it fails)
+}
 
 // Never publish placeholder text.
 const todo = visibleProjects(loadContent().projects).filter((p) => JSON.stringify(p).includes('TODO'));
@@ -45,8 +60,12 @@ if (target === 'cloudflare') {
       ]
     }
   }, null, 2));
-  const r = run('firebase', ['deploy', '--only', 'hosting', '--project', cfg.firebaseProject]);
-  if (r.status !== 0) { console.error('\nPublishing failed. If it says you are not logged in, run:  firebase login'); process.exit(1); }
+  const r = firebaseCli()(['deploy', '--only', 'hosting', '--project', cfg.firebaseProject]);
+  if (r.status !== 0) {
+    console.error('\nPublishing failed. If it says you are not logged in, run:  firebase login');
+    console.error('(No Firebase CLI yet? Install it once:  npm install -g firebase-tools)');
+    process.exit(1);
+  }
   console.log(`\nPublished. Your site: https://${cfg.firebaseProject}.web.app`);
 } else {
   console.error(`Unknown target "${target}" — use cloudflare or firebase.`);

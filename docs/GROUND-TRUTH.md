@@ -58,8 +58,10 @@ Source: <https://www.freelancer.com/support/Profile/how-to-add-a-portfolio> via 
 | Cloudflare Pages | unlimited static requests and bandwidth; 500 builds/month; 20,000 files per site; 25 MiB per file | `<project>.pages.dev` |
 | Firebase Hosting (Spark) | 10 GB storage; **360 MB/day** transfer | `<project>.web.app` |
 
-Chosen default: **Cloudflare Pages** (no traffic cap). Firebase stays available via
-`node tools/deploy.mjs firebase`.
+First choice was **Cloudflare Pages** (no traffic cap), but its saved login expires and needs a browser
+"Allow" click each time; the Firebase CLI login stays valid. **Since 2026-10-12 the default is Firebase
+Hosting** (project `omar-abossrie` → `https://omar-abossrie.web.app`). 360 MB/day is roughly 150 full
+visits a day — plenty for a portfolio. Cloudflare stays available via `node tools/deploy.mjs cloudflare`.
 
 ## Local machine (Omar's PC) — checked 2026-10-08
 
